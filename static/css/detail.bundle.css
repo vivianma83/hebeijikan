@@ -1,0 +1,192 @@
+.o-carousel {
+  height: 250px;
+  min-width: 1200px; }
+  .o-carousel .banner-list > li a {
+    display: block;
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+
+.o-detail-wrap {
+  padding-top: 30px;
+  min-height: calc(100vh - 520px); }
+  .o-detail-wrap .o-title {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 15px; }
+  .o-detail-wrap .o-desc {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 30px; }
+  .o-detail-wrap .o-detain-main {
+    width: 900px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 2; }
+    .o-detail-wrap .o-detain-main p {
+      margin-bottom: 30px; }
+  .o-detail-wrap img {
+    max-width: 100%; }
+
+.tab_context {
+  height: 100px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  margin: 20px auto; }
+
+.tab_context p {
+  display: none; }
+
+.font_blue {
+  color: #63a7e4; }
+
+.banner_tip {
+  padding: 50px 0;
+  color: #fff;
+  width: 900px;
+  margin: 0 auto;
+  height: 80px;
+  position: relative; }
+
+.font30 {
+  font-size: 40px; }
+
+.font10 {
+  font-size: 10px; }
+
+.font20 {
+  font-size: 20px; }
+
+.title_dis_center {
+  margin: 20px;
+  text-align: center; }
+
+.flow_img {
+  position: absolute;
+  top: 0px;
+  right: -100px; }
+  .flow_img img {
+    width: 400px; }
+
+.flex-container {
+  color: #444;
+  display: flex;
+  margin: 20px 0;
+  flex-direction: row; }
+  .flex-container .tab_item {
+    background: #ccc;
+    color: #000;
+    padding: 10px;
+    margin: 10px;
+    text-align: center; }
+  .flex-container .tab_item.selected {
+    background: #1e327a;
+    color: #fff; }
+  .flex-container li {
+    flex: 1;
+    text-align: center; }
+  .flex-container .text_box {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    flex: 1;
+    text-align: center;
+    margin: 20px; }
+
+.be_line {
+  border-top: 1px solid #e5e5e5;
+  width: 100%;
+  height: 1px;
+  margin: 50px 0; }
+
+video:active {
+  outline: none; }
+
+.f-play {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  padding: 0 10px;
+  z-index: 100;
+  font-size: 13px;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  display: none; }
+  .f-play i {
+    background-image: url(https://p.ssl.qhimg.com/t0135c97a2dc9afd279.png);
+    background-image: -webkit-image-set(url(https://p.ssl.qhimg.com/t0135c97a2dc9afd279.png) 1x, url(https://p.ssl.qhimg.com/t01a31db5da0ae798c3.png) 2x);
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: inline-block;
+    height: 9px;
+    margin-right: 4px;
+    width: 7px; }
+
+.f-paused i {
+  background-image: url(https://p.ssl.qhimg.com/t01c30a1401a92d4bd6.png);
+  background-image: -webkit-image-set(url(https://p.ssl.qhimg.com/t01c30a1401a92d4bd6.png) 1x, url(https://p.ssl.qhimg.com/t01485a1addff86c7f4.png) 2x); }
+
+.f-mute {
+  background-image: url(https://p.ssl.qhimg.com/t01d03f9adbe15396ae.png);
+  background-image: -webkit-image-set(url(https://p.ssl.qhimg.com/t01d03f9adbe15396ae.png) 1x, url(https://p.ssl.qhimg.com/t0152d55e74040cd368.png) 2x);
+  background-repeat: no-repeat;
+  background-position: center center;
+  bottom: 0px;
+  height: 30px;
+  position: absolute;
+  right: 4px;
+  width: 22px;
+  z-index: 2; }
+
+.f-open {
+  background-image: url(https://p.ssl.qhimg.com/t01f677c45f75ac4fe8.png);
+  background-image: -webkit-image-set(url(https://p.ssl.qhimg.com/t01f677c45f75ac4fe8.png) 1x, url(https://p.ssl.qhimg.com/t016cc01a350d268b0e.png) 2x); }
+
+.f-vedio-wrap {
+  position: relative;
+  background: #000; }
+  .f-vedio-wrap:hover .f-play {
+    display: block; }
+  .f-vedio-wrap video {
+    width: 100%; }
+
+.o-video {
+  height: 350px;
+  width: 900px;
+  margin: 0 auto 30px auto;
+  position: relative;
+  background: #000; }
+  .o-video:hover .f-play {
+    display: block; }
+  .o-video video {
+    width: 100%;
+    height: 350px; }
+  .o-video .video-js .vjs-big-play-button {
+    top: 50%;
+    left: 50%;
+    margin-left: -30px;
+    margin-top: -25px; }
+
+@media screen and (max-device-width: 420px) {
+  .o-mod-inn, .o-carousel {
+    width: auto;
+    padding: 0 10px; }
+  .o-carousel {
+    width: auto;
+    min-width: auto;
+    padding: 0;
+    height: 180px; }
+  .o-carousel .banner-list > li a {
+    height: 180px; }
+  .o-video {
+    height: auto;
+    width: auto; }
+  .o-detail-wrap .o-detain-main {
+    width: auto;
+    font-size: 18px; }
+  .video-js {
+    width: 100% !important; } }
+
