@@ -1,0 +1,29 @@
+<!-- {
+  "title": "人才招聘",
+  "description": "河北冀勘招聘地质部、矿山开发部、矿山环境治理部专业人才，提供社会保险、出差报销、公司包住、带薪休假等福利。联系电话 15076013511。",
+  "keywords": "河北冀勘招聘,地质勘查招聘,秦皇岛矿山招聘"
+} -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="lbl">Careers</span>
+      <h1 style="font-size:clamp(26px,5vw,40px);color:var(--c-head)">人才招聘</h1>
+    </div>
+    <div class="prose">
+      <h3>招聘岗位</h3>
+      <p>{{job.positions}}</p>
+      <h3>工薪待遇</h3>
+      <p>{{job.pay}}</p>
+      <h3>岗位要求</h3>
+      <p>{{job.requirement}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--tint">
+  <div class="wrap">
+    <div class="sec__head"><h2>公司福利</h2></div>
+    {{% benefits %}}
+    <p class="sec__lead" style="margin-top:24px">投递或咨询请联系 {{contact.primaryTitle}}{{contact.primaryName}}　<a href="tel:{{contact.phone}}">{{contact.phone}}</a>（{{contact.phoneNote}}），或发送简历至 <a href="mailto:{{contact.email}}">{{contact.email}}</a>。</p>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+<!-- {
+  "title": "联系我们",
+  "description": "河北冀勘工程技术服务有限公司联系方式：总经理马英豪 15076013511（微信同号），邮箱 hbjk111@126.com。秦皇岛总部、承德分公司、赤峰分公司地址与对接人一览，并提供在线项目咨询表单。",
+  "keywords": "河北冀勘联系方式,秦皇岛矿山技术服务,地质勘查咨询电话"
+} -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec__head">
+      <span class="lbl">Contact</span>
+      <h1 style="font-size:clamp(26px,5vw,40px);color:var(--c-head)">联系我们</h1>
+      <p class="sec__lead">把矿种、所在地和当前进度告诉我们，可以先给判断，不收费。</p>
+    </div>
+    {{% offices %}}
+  </div>
+</section>
+
+<section class="sec sec--tint">
+  <div class="wrap">
+    <div class="sec__head"><h2>关联公司</h2></div>
+    {{% shareholders %}}
+  </div>
+</section>
+
+<section class="sec" id="form">
+  <div class="wrap">
+    <div class="sec__head">
+      <h2>在线留下项目需求</h2>
+      <p class="sec__lead">填写后我们会尽快回电。急事请直接拨打 <a href="tel:{{contact.phone}}">{{contact.phone}}</a>。</p>
+    </div>
+    <form class="form" name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact.html?ok=1">
+      <input type="hidden" name="form-name" value="inquiry">
+      <p class="hp"><label>请勿填写此项 <input name="bot-field"></label></p>
+      <div class="field">
+        <label for="f-name">您的称呼 <span aria-hidden="true">*</span></label>
+        <input id="f-name" name="name" type="text" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-phone">联系电话 <span aria-hidden="true">*</span></label>
+        <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel">
+      </div>
+      <div class="field">
+        <label for="f-type">需要哪类服务</label>
+        <select id="f-type" name="type">
+          <option>资源储量核实报告</option>
+          <option>矿产资源开发利用方案</option>
+          <option>矿山地质环境保护与土地复垦方案</option>
+          <option>采矿证 / 立项核准 / 安全许可证办理</option>
+          <option>物探勘查与钻探</option>
+          <option>矿山工程设计</option>
+          <option>其他 / 不确定</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-msg">项目情况</label>
+        <textarea id="f-msg" name="message" placeholder="矿种、所在地、目前进展到哪一步"></textarea>
+      </div>
+      <button class="btn btn--accent" type="submit">提交咨询</button>
+      <p class="form__hint">提交即表示同意我们通过您留下的电话与您联系。我们不会将您的信息用于其他用途。</p>
+    </form>
+  </div>
+</section>

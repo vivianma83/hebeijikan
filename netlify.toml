@@ -1,0 +1,51 @@
+# Netlify 构建与缓存配置
+# 推送到 master 后，Netlify 会在自己的服务器上执行下面的命令，本地无需操作。
+
+[build]
+  command = "python3 build.py"
+  publish = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
+
+# HTML 不缓存，改了立刻生效
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# 机器可读文件同样不缓存，方便爬虫拿到最新版
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Content-Type = "text/plain; charset=utf-8"
+
+# 图片与样式可以长缓存
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# 兼容旧站链接（Netlify 的 Pretty URLs 曾把 .html 改写成无后缀路径）
+[[redirects]]
+  from = "/tech"
+  to = "/services.html"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/join"
+  to = "/join.html"
+  status = 301
