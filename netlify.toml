@@ -34,10 +34,35 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
-# 兼容旧站链接（Netlify 的 Pretty URLs 曾把 .html 改写成无后缀路径）
+# 无后缀路径统一 301 到带 .html 的规范地址。
+# 两个作用：
+#   1. 关闭 Netlify 的 Pretty URLs 后，之前分发出去的 /about 这类链接照样能打开
+#   2. 全站只有一个规范地址，与 canonical 和 sitemap 保持一致
+# /tech 是改版前老站的路径，一并保留。
+
 [[redirects]]
-  from = "/tech"
+  from = "/services"
   to = "/services.html"
+  status = 301
+
+[[redirects]]
+  from = "/municipal"
+  to = "/municipal.html"
+  status = 301
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 301
+
+[[redirects]]
+  from = "/equipment"
+  to = "/equipment.html"
+  status = 301
+
+[[redirects]]
+  from = "/credentials"
+  to = "/credentials.html"
   status = 301
 
 [[redirects]]
@@ -46,6 +71,21 @@
   status = 301
 
 [[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 301
+
+[[redirects]]
   from = "/join"
   to = "/join.html"
+  status = 301
+
+[[redirects]]
+  from = "/thanks"
+  to = "/thanks.html"
+  status = 301
+
+[[redirects]]
+  from = "/tech"
+  to = "/services.html"
   status = 301
