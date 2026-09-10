@@ -353,25 +353,37 @@ def build():
     shutil.copytree(os.path.join(SRC, "assets"), os.path.join(DIST, "assets"))
     shutil.copy(os.path.join(SRC, "favicon.ico"), os.path.join(DIST, "favicon.ico"))
 
-    # 为每张位图生成 WebP（体积更小，浏览器优先取用；原图作为兜底保留）
+    # WebP 已随源码提交（Netlify 构建镜像没有 Pillow，不能依赖构建时生成）。
+    # 本地若装了 Pillow，会为缺失的图补生成；没装也不影响，只是少一层优化。
+    imgdir = os.path.join(DIST, "assets", "img")
     webp_saved = 0
+    for fn in os.listdir(imgdir):
+        if fn.lower().endswith(".webp"):
+            WEBP_AVAILABLE.add(fn[:-5])
     try:
         from PIL import Image
-        imgdir = os.path.join(DIST, "assets", "img")
-        for fn in os.listdir(imgdir):
+        for fn in sorted(os.listdir(imgdir)):
             if not fn.lower().endswith((".jpg", ".jpeg", ".png")):
                 continue
+            stem = fn.rsplit(".", 1)[0]
+            if stem in WEBP_AVAILABLE:
+                continue
             src_p = os.path.join(imgdir, fn)
-            dst_p = os.path.join(imgdir, fn.rsplit(".", 1)[0] + ".webp")
-            im = Image.open(src_p)
-            im.save(dst_p, "WEBP", quality=76, method=6)
+            dst_p = os.path.join(imgdir, stem + ".webp")
+            Image.open(src_p).save(dst_p, "WEBP", quality=76, method=6)
             if os.path.getsize(dst_p) < os.path.getsize(src_p):
-                webp_saved += os.path.getsize(src_p) - os.path.getsize(dst_p)
-                WEBP_AVAILABLE.add(fn.rsplit('.', 1)[0])
+                WEBP_AVAILABLE.add(stem)
             else:
-                os.remove(dst_p)          # WebP 反而更大就不用
+                os.remove(dst_p)
     except ImportError:
-        print("  （未安装 Pillow，跳过 WebP 生成）")
+        pass
+    for stem in WEBP_AVAILABLE:
+        for ext in (".jpg", ".jpeg", ".png"):
+            orig = os.path.join(imgdir, stem + ext)
+            if os.path.exists(orig):
+                webp_saved += os.path.getsize(orig) - os.path.getsize(
+                    os.path.join(imgdir, stem + ".webp"))
+                break
 
     pages, built = [], []
     for fn in sorted(os.listdir(os.path.join(SRC, "pages"))):
@@ -402,6 +414,8 @@ def build():
             "extrajsonld": extra, "keywords": esc(meta.get("keywords", "")),
             "slug": slug, "body": render(body, {"slug": slug}),
             "canonical": SITE_URL + ("/" if slug == "index" else f"/{slug}.html"),
+            "robots": ('<meta name="robots" content="noindex, follow">\n'
+                       if meta.get("noindex") else ""),
             "year": str(date.today().year),
         }
         for nav in ("services", "municipal", "projects", "equipment", "credentials", "about", "contact"):
@@ -411,7 +425,8 @@ def build():
         out = render(open(os.path.join(SRC, "layout.html"), encoding="utf-8").read(), ctx)
         out = to_picture(out)
         open(os.path.join(DIST, fn), "w", encoding="utf-8").write(out)
-        pages.append(slug)
+        if not meta.get("noindex"):
+            pages.append(slug)
         built.append((fn, len(out.encode("utf-8"))))
 
     # sitemap + robots

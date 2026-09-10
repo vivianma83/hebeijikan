@@ -78,7 +78,10 @@
     });
   });
 
-  // 表单提交成功后的提示
+  // 成功页：上报一次转化
+  if (location.pathname.indexOf('/thanks') === 0) track('表单提交成功', document.referrer || '-');
+
+  // 表单提交成功后的提示（旧的 ?ok=1 兜底，现已改用独立成功页）
   if (location.search.indexOf('ok=1') > -1) {
     var f = document.querySelector('.form');
     if (f) {
