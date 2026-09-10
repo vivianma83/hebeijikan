@@ -35,6 +35,9 @@
     Cache-Control = "public, max-age=604800"
 
 # 无后缀路径统一 301 到带 .html 的规范地址。
+# 必须写 force = true：Netlify 默认在请求命中已存在文件时直接返回该文件、
+# 跳过 redirect 规则，而 /about 会被默认的无后缀匹配命中 about.html，
+# 导致规则空转、同一份内容存在两个都返回 200 的地址。
 # 两个作用：
 #   1. 关闭 Netlify 的 Pretty URLs 后，之前分发出去的 /about 这类链接照样能打开
 #   2. 全站只有一个规范地址，与 canonical 和 sitemap 保持一致
@@ -44,48 +47,58 @@
   from = "/services"
   to = "/services.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/municipal"
   to = "/municipal.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/projects"
   to = "/projects.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/equipment"
   to = "/equipment.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/credentials"
   to = "/credentials.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/about"
   to = "/about.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/contact"
   to = "/contact.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/join"
   to = "/join.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/thanks"
   to = "/thanks.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/tech"
   to = "/services.html"
   status = 301
+  force = true
